@@ -62,7 +62,7 @@ export default function HomePage() {
           {/* How It Works Section */}
           <div className="mb-20">
             <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">How FoodNSU Works</h2>
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">How Smart Dietitian Works</h2>
               <p className="text-xl text-gray-600 max-w-2xl mx-auto">
                 Three simple steps to understand your food better
               </p>
@@ -107,7 +107,7 @@ export default function HomePage() {
           {/* Features Section */}
           <div className="mb-20">
             <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Choose FoodNSU?</h2>
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Choose Smart Dietitian?</h2>
               <p className="text-xl text-gray-600 max-w-2xl mx-auto">
                 Powerful features designed to help you make better food choices
               </p>
@@ -149,10 +149,10 @@ export default function HomePage() {
               Ready to Transform Your Nutrition?
             </h2>
             <p className="text-xl text-green-50 mb-8 max-w-2xl mx-auto">
-              Join thousands of users who are making smarter food choices with FoodNSU AI
+              Join thousands of users who are making smarter food choices with Smart Dietitian AI
             </p>
             <Link href="/classifier" className="inline-flex items-center space-x-2 px-8 py-4 bg-white text-green-600 font-bold rounded-xl hover:shadow-2xl hover:scale-105 transition-all">
-              <span>Try FoodNSU Now</span>
+              <span>Try Smart Dietitian Now</span>
               <ArrowRight className="w-5 h-5" />
             </Link>
           </div>
