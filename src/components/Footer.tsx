@@ -14,7 +14,7 @@ export default function Footer() {
               <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center">
                 <UtensilsCrossed className="w-6 h-6 text-white" />
               </div>
-              <span className="text-xl font-bold text-white">FoodNSU</span>
+              <span className="text-xl font-bold text-white">Smart Dietitian</span>
             </div>
             <p className="text-gray-400 text-sm mb-4">
               AI-powered nutrition analysis to help you make informed decisions about your meals. Upload, analyze, and eat smarter.
@@ -55,7 +55,7 @@ export default function Footer() {
         
         <div className="pt-8 border-t border-gray-800 flex flex-col sm:flex-row justify-between items-center">
           <p className="text-sm text-gray-400 mb-4 sm:mb-0">
-            © 2025 FoodNSU. All rights reserved.
+            © 2025 Smart Dietitian. All rights reserved.
           </p>
           <div className="flex space-x-6 text-sm">
             <Link href="/privacy" className="text-gray-400 hover:text-green-500 transition-colors">Privacy Policy</Link>
@@ -67,3 +67,4 @@ export default function Footer() {
     </footer>
   );
 }
+
