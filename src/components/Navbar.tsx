@@ -46,7 +46,7 @@ export default function Navbar() {
                 <UtensilsCrossed className="w-6 h-6 text-white" />
               </div>
               <span className="sm:inline bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
-                FoodNSU
+                Smart Dietitian
               </span>
             </Link>
           </div>
@@ -219,3 +219,4 @@ export default function Navbar() {
     </nav>
   );
 }
+
