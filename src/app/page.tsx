@@ -1,28 +1,27 @@
-'use client'
 import React from 'react';
-import { Sparkles, TrendingUp, Shield, Zap, Camera, Brain, Heart, ArrowRight } from 'lucide-react';
+import { Sparkles, TrendingUp, Shield, Zap, Camera, Brain, Heart, ArrowRight, Target, Activity, Apple, BarChart3, User, CheckCircle } from 'lucide-react';
 import Link from 'next/link';
 
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">     
-     {/* Main Content */}
+      {/* Main Content */}
       <main className="pt-24 pb-20 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
           {/* Hero Section */}
           <div className="text-center mb-20">
             <div className="inline-flex items-center space-x-2 bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-medium mb-6 animate-pulse">
               <Sparkles className="w-4 h-4" />
-              <span>AI-Powered Nutrition Analysis</span>
+              <span>AI-Powered Personalized Nutrition</span>
             </div>
             <h1 className="text-5xl sm:text-7xl font-bold text-gray-900 mb-6 leading-tight">
-              Know What You Eat,
+              Your Personal AI
               <span className="block bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
-                Live Healthier
+                Nutrition Coach
               </span>
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-10 leading-relaxed">
-              Transform your nutrition journey with our advanced AI technology. Simply upload a photo of your meal and get instant insights about calories, nutrients, and personalized health recommendations.
+              Smart Dietitian learns about your body, health goals, and medical conditions to provide personalized nutrition recommendations. Upload a food photo and get instant AI-powered insights tailored just for you.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link href="/classifier" className="group px-8 py-4 bg-gradient-to-r from-green-600 to-emerald-600 text-white font-semibold rounded-xl hover:shadow-2xl hover:scale-105 transition-all flex items-center space-x-2">
@@ -36,68 +35,128 @@ export default function HomePage() {
           </div>
 
           {/* Stats Section */}
-          <div className="grid md:grid-cols-3 gap-8 mb-20">
-            <div className="bg-white rounded-2xl p-8 shadow-lg text-center transform hover:scale-105 transition-transform">
-              <div className="text-5xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent mb-2">
+          <div className="grid md:grid-cols-4 gap-6 mb-20">
+            <div className="bg-white rounded-2xl p-6 shadow-lg text-center transform hover:scale-105 transition-transform">
+              <div className="text-4xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent mb-2">
                 86.96%
               </div>
-              <p className="text-gray-600 font-medium">Accuracy Rate</p>
+              <p className="text-gray-600 font-medium text-sm">AI Accuracy</p>
             </div>
-            <div className="bg-white rounded-2xl p-8 shadow-lg text-center transform hover:scale-105 transition-transform">
-              <div className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent mb-2">
+            <div className="bg-white rounded-2xl p-6 shadow-lg text-center transform hover:scale-105 transition-transform">
+              <div className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent mb-2">
                 34+
               </div>
-              <p className="text-gray-600 font-medium">Food Items Recognized</p>
+              <p className="text-gray-600 font-medium text-sm">Foods Recognized</p>
             </div>
-            <div className="bg-white rounded-2xl p-8 shadow-lg text-center transform hover:scale-105 transition-transform">
-              <div className="text-5xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
+            <div className="bg-white rounded-2xl p-6 shadow-lg text-center transform hover:scale-105 transition-transform">
+              <div className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
                 &lt;2s
               </div>
-              <p className="text-gray-600 font-medium">Analysis Time</p>
+              <p className="text-gray-600 font-medium text-sm">Analysis Time</p>
+            </div>
+            <div className="bg-white rounded-2xl p-6 shadow-lg text-center transform hover:scale-105 transition-transform">
+              <div className="text-4xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent mb-2">
+                100%
+              </div>
+              <p className="text-gray-600 font-medium text-sm">Personalized</p>
+            </div>
+          </div>
+
+          {/* Key Features Highlight */}
+          <div className="bg-gradient-to-br from-green-600 to-emerald-600 rounded-3xl p-12 mb-20 text-white shadow-2xl">
+            <div className="text-center mb-10">
+              <h2 className="text-4xl font-bold mb-4">Complete Nutrition Management</h2>
+              <p className="text-xl text-green-50 max-w-2xl mx-auto">
+                From personalized profiles to daily tracking, Smart Dietitian handles everything
+              </p>
+            </div>
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+                <Target className="w-10 h-10 mb-4" />
+                <h3 className="text-xl font-bold mb-2">Personal Health Profile</h3>
+                <p className="text-green-50">AI calculates your BMI and daily nutrition targets based on your age, height, weight, and health conditions</p>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+                <Brain className="w-10 h-10 mb-4" />
+                <h3 className="text-xl font-bold mb-2">Smart Food Analysis</h3>
+                <p className="text-green-50">Get personalized recommendations comparing each food against your goals and medical conditions</p>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+                <BarChart3 className="w-10 h-10 mb-4" />
+                <h3 className="text-xl font-bold mb-2">Daily Progress Tracking</h3>
+                <p className="text-green-50">Monitor your calorie, protein, carbs, and fat intake throughout the day to stay on target</p>
+              </div>
             </div>
           </div>
 
           {/* How It Works Section */}
           <div className="mb-20">
             <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">How Smart Dietitian Works</h2>
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">Your Journey with Smart Dietitian</h2>
               <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                Three simple steps to understand your food better
+                Five simple steps to achieve your nutrition goals
               </p>
             </div>
-            <div className="grid md:grid-cols-3 gap-8">
-              <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
-                <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mb-6 mx-auto">
-                  <Camera className="w-8 h-8 text-white" />
+            <div className="grid md:grid-cols-5 gap-4">
+              <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow relative">
+                <div className="absolute -top-4 -right-4 w-10 h-10 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-lg shadow-lg">
+                  1
                 </div>
-                <div className="text-center">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3">1. Upload Photo</h3>
-                  <p className="text-gray-600">
-                    Take or upload a clear photo of your meal. Our AI works with any food image.
-                  </p>
+                <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center mb-4">
+                  <User className="w-6 h-6 text-white" />
                 </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">Sign Up</h3>
+                <p className="text-sm text-gray-600">
+                  Create your profile with health details and conditions
+                </p>
               </div>
-              <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mb-6 mx-auto">
-                  <Brain className="w-8 h-8 text-white" />
+              <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow relative">
+                <div className="absolute -top-4 -right-4 w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-lg shadow-lg">
+                  2
                 </div>
-                <div className="text-center">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3">2. AI Analysis</h3>
-                  <p className="text-gray-600">
-                    Our trained model identifies the food and calculates precise nutritional values.
-                  </p>
+                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center mb-4">
+                  <Activity className="w-6 h-6 text-white" />
                 </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">Get Targets</h3>
+                <p className="text-sm text-gray-600">
+                  AI calculates your daily nutrition needs
+                </p>
               </div>
-              <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
-                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mb-6 mx-auto">
-                  <Heart className="w-8 h-8 text-white" />
+              <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow relative">
+                <div className="absolute -top-4 -right-4 w-10 h-10 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold text-lg shadow-lg">
+                  3
                 </div>
-                <div className="text-center">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3">3. Get Insights</h3>
-                  <p className="text-gray-600">
-                    Receive detailed nutrition facts and personalized health recommendations.
-                  </p>
+                <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mb-4">
+                  <Camera className="w-6 h-6 text-white" />
                 </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">Upload Food</h3>
+                <p className="text-sm text-gray-600">
+                  Take a photo of your meal
+                </p>
+              </div>
+              <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow relative">
+                <div className="absolute -top-4 -right-4 w-10 h-10 bg-orange-600 text-white rounded-full flex items-center justify-center font-bold text-lg shadow-lg">
+                  4
+                </div>
+                <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl flex items-center justify-center mb-4">
+                  <Brain className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">AI Analysis</h3>
+                <p className="text-sm text-gray-600">
+                  Get personalized recommendations
+                </p>
+              </div>
+              <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow relative">
+                <div className="absolute -top-4 -right-4 w-10 h-10 bg-teal-600 text-white rounded-full flex items-center justify-center font-bold text-lg shadow-lg">
+                  5
+                </div>
+                <div className="w-12 h-12 bg-gradient-to-br from-teal-500 to-green-500 rounded-xl flex items-center justify-center mb-4">
+                  <CheckCircle className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">Track Progress</h3>
+                <p className="text-sm text-gray-600">
+                  Monitor your daily intake goals
+                </p>
               </div>
             </div>
           </div>
@@ -105,37 +164,64 @@ export default function HomePage() {
           {/* Features Section */}
           <div className="mb-20">
             <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Choose Smart Dietitian?</h2>
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">Powerful Features for Your Health</h2>
               <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                Powerful features designed to help you make better food choices
+                Everything you need to make informed nutrition decisions
               </p>
             </div>
             <div className="grid md:grid-cols-3 gap-8">
               <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all group">
                 <div className="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
-                  <Zap className="w-7 h-7 text-green-600" />
+                  <Target className="w-7 h-7 text-green-600" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">Instant Results</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">Personalized BMI & Goals</h3>
                 <p className="text-gray-600 leading-relaxed">
-                  Get comprehensive nutrition analysis in under 2 seconds with our advanced AI model trained on thousands of food images.
+                  Our AI analyzes your body metrics and health conditions to set precise daily targets for calories, protein, carbs, and fats tailored to your unique needs.
                 </p>
               </div>
               <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all group">
                 <div className="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
-                  <TrendingUp className="w-7 h-7 text-blue-600" />
+                  <Apple className="w-7 h-7 text-blue-600" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">Smart Recommendations</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">Medical Condition Aware</h3>
                 <p className="text-gray-600 leading-relaxed">
-                  Receive personalized advice powered by AI that considers your health goals and dietary preferences.
+                  Get food recommendations that consider your specific health conditions, with detailed pros and cons for each meal based on your medical profile.
                 </p>
               </div>
               <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all group">
                 <div className="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
-                  <Shield className="w-7 h-7 text-purple-600" />
+                  <BarChart3 className="w-7 h-7 text-purple-600" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">Privacy First</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">Real-Time Tracking</h3>
                 <p className="text-gray-600 leading-relaxed">
-                  Your food photos are analyzed securely and never stored. We prioritize your privacy and data security.
+                  Track every meal you consume and see your daily progress toward nutritional goals. Save or discard foods and maintain complete control over your diet.
+                </p>
+              </div>
+              <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all group">
+                <div className="w-14 h-14 bg-orange-100 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                  <Zap className="w-7 h-7 text-orange-600" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">Instant Food Recognition</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Our trained classification model identifies foods from photos in seconds, showing complete nutritional content before you decide to eat.
+                </p>
+              </div>
+              <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all group">
+                <div className="w-14 h-14 bg-pink-100 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                  <Heart className="w-7 h-7 text-pink-600" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">Smart Recommendations</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Receive AI-powered advice on whether each food suits your goals and health conditions, with clear explanations of benefits and concerns.
+                </p>
+              </div>
+              <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all group">
+                <div className="w-14 h-14 bg-teal-100 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                  <Shield className="w-7 h-7 text-teal-600" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">Privacy & Security</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Your health data and food photos are processed securely. We prioritize your privacy while delivering personalized nutrition insights.
                 </p>
               </div>
             </div>
@@ -144,10 +230,10 @@ export default function HomePage() {
           {/* CTA Section */}
           <div className="bg-gradient-to-r from-green-600 to-emerald-600 rounded-3xl p-12 text-center shadow-2xl">
             <h2 className="text-4xl font-bold text-white mb-4">
-              Ready to Transform Your Nutrition?
+              Start Your Personalized Nutrition Journey
             </h2>
             <p className="text-xl text-green-50 mb-8 max-w-2xl mx-auto">
-              Join thousands of users who are making smarter food choices with Smart Dietitian AI
+              Join Smart Dietitian today and get AI-powered recommendations tailored to your body, health, and goals
             </p>
             <Link href="/classifier" className="inline-flex items-center space-x-2 px-8 py-4 bg-white text-green-600 font-bold rounded-xl hover:shadow-2xl hover:scale-105 transition-all">
               <span>Try Smart Dietitian Now</span>
