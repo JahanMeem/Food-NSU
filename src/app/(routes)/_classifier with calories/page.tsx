@@ -1,9 +1,11 @@
+//src/app/(routes)/classifier/page.tsx
+
 'use client';
 
 import { useState, useCallback, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import { Upload, Loader2, AlertCircle, ChefHat, Sparkles } from 'lucide-react';
+import { Upload, Loader2, AlertCircle, ChefHat, Sparkles, Flame } from 'lucide-react';
 
 interface PredictionResult {
   label: string;
@@ -16,16 +18,19 @@ export default function FoodClassifier() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [predictions, setPredictions] = useState<PredictionResult[]>([]);
+  const [calories, setCalories] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [topK, setTopK] = useState(5);
 
+  // Session checking
   useEffect(() => {
     if (status === 'unauthenticated') {
       router.push('/signin');
     }
   }, [status, router]);
 
+  // Show loading state while checking authentication
   if (status === 'loading') {
     return (
       <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 flex items-center justify-center">
@@ -37,6 +42,7 @@ export default function FoodClassifier() {
     );
   }
 
+  // Don't render if not authenticated
   if (!session) {
     return null;
   }
@@ -51,6 +57,7 @@ export default function FoodClassifier() {
       };
       reader.readAsDataURL(file);
       setPredictions([]);
+      setCalories(null);
       setError(null);
     }
   }, []);
@@ -61,15 +68,18 @@ export default function FoodClassifier() {
     setLoading(true);
     setError(null);
     setPredictions([]);
+    setCalories(null);
 
     try {
       const { Client } = await import('@gradio/client');
       
-      const client = await Client.connect('jahanmeem0/food-nsu');
+      const client = await Client.connect('jahanmeem0/food-nsu-calories');
       const result = await client.predict('/predict_image', {
         image: selectedFile,
         top_k: topK,
       });
+
+      console.log('Raw result:', result);
 
       const data = result.data;
       
@@ -86,9 +96,23 @@ export default function FoodClassifier() {
           setPredictions(parsedPredictions);
         } else {
           setError('Unexpected response format from model.');
+          console.error('Response object:', responseObj);
+        }
+
+        // Extract calories from data[1]
+        if (data.length > 1 && typeof data[1] === 'string') {
+          const caloriesText = data[1];
+          // Remove emoji and extract just the number
+          const caloriesMatch = caloriesText.match(/(\d+\.?\d*)\s*kcal/i);
+          if (caloriesMatch) {
+            setCalories(caloriesMatch[1]);
+          } else {
+            setCalories(caloriesText.replace(/[^0-9.]/g, ''));
+          }
         }
       } else {
         setError('No predictions returned from model.');
+        console.error('Data:', data);
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to classify image');
@@ -96,11 +120,6 @@ export default function FoodClassifier() {
     } finally {
       setLoading(false);
     }
-  };
-
-  const handleAnalyzeFood = (foodName: string) => {
-    // Navigate to analysis page with the specific food name clicked
-    router.push(`/food-analysis?food=${encodeURIComponent(foodName)}`);
   };
 
   const handleDrop = useCallback((e: React.DragEvent) => {
@@ -114,6 +133,7 @@ export default function FoodClassifier() {
       };
       reader.readAsDataURL(file);
       setPredictions([]);
+      setCalories(null);
       setError(null);
     }
   }, []);
@@ -124,6 +144,7 @@ export default function FoodClassifier() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50">  
+      {/* Main Content */}
       <main className="max-w-6xl mx-auto px-4 py-12">
         <div className="grid lg:grid-cols-2 mt-12 gap-8">
           {/* Upload Section */}
@@ -170,7 +191,9 @@ export default function FoodClassifier() {
                       <p className="text-gray-700 font-semibold mb-2">
                         Drop your image here
                       </p>
-                      <p className="text-gray-500 text-sm mb-4">or</p>
+                      <p className="text-gray-500 text-sm mb-4">
+                        or
+                      </p>
                       <label className="inline-block bg-gradient-to-r from-emerald-500 to-green-600 text-white px-8 py-3 rounded-xl font-semibold cursor-pointer hover:shadow-lg hover:scale-105 active:scale-95 transition-all">
                         Browse Files
                         <input
@@ -187,6 +210,7 @@ export default function FoodClassifier() {
                   )}
                 </div>
 
+                {/* Top K Slider */}
                 <div className="mt-6 bg-gradient-to-r from-emerald-50 to-green-50 p-4 rounded-xl border border-emerald-200">
                   <label className="block text-sm font-semibold text-gray-700 mb-3">
                     Number of Predictions: <span className="text-emerald-600">{topK}</span>
@@ -205,6 +229,7 @@ export default function FoodClassifier() {
                   </div>
                 </div>
 
+                {/* Classify Button */}
                 <button
                   onClick={classifyImage}
                   disabled={!selectedFile || loading}
@@ -228,6 +253,8 @@ export default function FoodClassifier() {
 
           {/* Results Section */}
           <div className="space-y-6">
+            
+            {/* Predictions Card */}
             <div className="bg-white rounded-3xl shadow-xl border border-emerald-100 overflow-hidden min-h-[500px]">
               <div className="bg-gradient-to-r from-emerald-500 to-green-500 p-6">
                 <h2 className="text-2xl font-bold text-white flex items-center gap-2">
@@ -289,24 +316,41 @@ export default function FoodClassifier() {
                             {(pred.confidence * 100).toFixed(1)}%
                           </span>
                         </div>
-                        <div className="bg-gray-200 h-2 rounded-full overflow-hidden mb-3">
+                        <div className="bg-gray-200 h-2 rounded-full overflow-hidden">
                           <div
                             className="bg-gradient-to-r from-emerald-500 to-green-600 h-full rounded-full transition-all duration-500"
                             style={{ width: `${pred.confidence * 100}%` }}
                           ></div>
                         </div>
-                        <button
-                          onClick={() => handleAnalyzeFood(pred.label)}
-                          className="w-full mt-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white py-2 px-4 rounded-lg font-semibold hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all"
-                        >
-                          🔍 Analyze {pred.label}
-                        </button>
                       </div>
                     ))}
                   </div>
                 )}
               </div>
             </div>
+
+            {/* Calories Card */}
+            {calories && (
+              <div className="bg-white rounded-3xl shadow-xl border border-emerald-100 overflow-hidden">
+                <div className="bg-gradient-to-r from-emerald-500 to-green-500 p-6">
+                  <h2 className="text-2xl font-bold text-white flex items-center gap-2">
+                    <Flame className="w-6 h-6" />
+                    Estimated Calories
+                  </h2>
+                </div>
+                <div className="p-6">
+                  <div className="bg-gradient-to-br from-emerald-50 to-green-50 rounded-2xl p-6 border-2 border-emerald-200">
+                    <div className="flex items-center justify-center gap-3">
+                      <Flame className="w-10 h-10 text-emerald-500" />
+                      <div className="text-center">
+                        <p className="text-5xl font-bold text-gray-900">{calories}</p>
+                        <p className="text-xl text-gray-600 font-semibold mt-1">kcal</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </main>

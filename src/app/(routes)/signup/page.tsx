@@ -61,6 +61,11 @@ export default function SignupPage() {
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-gray-800 mb-2">Create Your Account</h1>
           <p className="text-gray-600">Join us to start your healthy diet journey</p>
+          {loading && (
+            <p className="text-sm text-green-600 mt-2">
+              🔄 Calculating your personalized nutritional needs...
+            </p>
+          )}
         </div>
 
         {error && (
@@ -82,7 +87,8 @@ export default function SignupPage() {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-2 border text-black  border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition"
+                disabled={loading}
+                className="w-full px-4 py-2 border text-black border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition disabled:bg-gray-100"
                 placeholder="John Doe"
               />
             </div>
@@ -98,7 +104,8 @@ export default function SignupPage() {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-2 border text-black  border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition"
+                disabled={loading}
+                className="w-full px-4 py-2 border text-black border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition disabled:bg-gray-100"
                 placeholder="john@example.com"
               />
             </div>
@@ -115,7 +122,8 @@ export default function SignupPage() {
                 onChange={handleChange}
                 required
                 minLength={6}
-                className="w-full px-4 py-2 border text-black  border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition"
+                disabled={loading}
+                className="w-full px-4 py-2 border text-black border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition disabled:bg-gray-100"
                 placeholder="••••••••"
               />
             </div>
@@ -133,7 +141,8 @@ export default function SignupPage() {
                 required
                 min="1"
                 max="120"
-                className="w-full px-4 py-2 border text-black  border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition"
+                disabled={loading}
+                className="w-full px-4 py-2 border text-black border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition disabled:bg-gray-100"
                 placeholder="25"
               />
             </div>
@@ -151,7 +160,8 @@ export default function SignupPage() {
                 required
                 min="50"
                 max="300"
-                className="w-full px-4 py-2 border text-black  border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition"
+                disabled={loading}
+                className="w-full px-4 py-2 border text-black border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition disabled:bg-gray-100"
                 placeholder="170"
               />
             </div>
@@ -169,7 +179,8 @@ export default function SignupPage() {
                 required
                 min="20"
                 max="500"
-                className="w-full px-4 py-2 border text-black  border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition"
+                disabled={loading}
+                className="w-full px-4 py-2 border text-black border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition disabled:bg-gray-100"
                 placeholder="70"
               />
             </div>
@@ -184,7 +195,8 @@ export default function SignupPage() {
                 value={formData.gender}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-2 border border-gray-300 text-black rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition bg-white"
+                disabled={loading}
+                className="w-full px-4 py-2 border border-gray-300 text-black rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition bg-white disabled:bg-gray-100"
               >
                 <option value="">Select Gender</option>
                 <option value="male">Male</option>
@@ -204,7 +216,8 @@ export default function SignupPage() {
               value={formData.medicalCondition}
               onChange={handleChange}
               rows={3}
-              className="w-full px-4 py-2 border text-black border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition resize-none"
+              disabled={loading}
+              className="w-full px-4 py-2 border text-black border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition resize-none disabled:bg-gray-100"
               placeholder="Any medical conditions, allergies, or dietary restrictions..."
             />
           </div>
@@ -214,7 +227,7 @@ export default function SignupPage() {
             disabled={loading}
             className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-lg transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {loading ? "Creating Account..." : "Sign Up"}
+            {loading ? "Creating Account & Calculating Nutrition..." : "Sign Up"}
           </button>
         </form>
 
